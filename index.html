@@ -10,108 +10,679 @@
 
     <meta
         name="description"
-        content="Max Allee's cybersecurity portfolio featuring security projects, technical labs, and professional development."
+        content="The cybersecurity portfolio of Max Allee, featuring security operations, Linux, networking, threat hunting, and penetration-testing projects."
     >
+
+    <meta name="theme-color" content="#07111f">
 
     <title>Max Allee | Cybersecurity Portfolio</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: grid;
-            place-items: center;
-            padding: 24px;
-            background: #0b1120;
-            color: #e5e7eb;
-            font-family:
-                Inter,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-        }
-
-        main {
-            width: 100%;
-            max-width: 760px;
-            padding: 56px 40px;
-            border: 1px solid #273449;
-            border-radius: 20px;
-            background: #111827;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-        }
-
-        .label {
-            margin: 0 0 12px;
-            color: #67e8f9;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.16em;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: clamp(2.8rem, 9vw, 5rem);
-            line-height: 1;
-        }
-
-        .intro {
-            max-width: 620px;
-            margin: 24px 0;
-            color: #b9c2d0;
-            font-size: 1.15rem;
-            line-height: 1.7;
-        }
-
-        a {
-            display: inline-block;
-            padding: 12px 18px;
-            border: 1px solid #67e8f9;
-            border-radius: 10px;
-            color: #67e8f9;
-            font-weight: 700;
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:focus-visible {
-            background: #67e8f9;
-            color: #0b1120;
-        }
-
-        @media (max-width: 600px) {
-            main {
-                padding: 40px 24px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 
 <body>
-    <main>
-        <p class="label">CYBERSECURITY PORTFOLIO</p>
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
 
-        <h1>Max Allee</h1>
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+            <a class="brand" href="#top" aria-label="Max Allee homepage">
+                MA<span>.</span>
+            </a>
 
-        <p class="intro">
-            Cybersecurity student and former public-safety professional
-            building practical experience in security operations, Linux,
-            networking, threat hunting, and system administration.
-        </p>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+                aria-label="Open navigation menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <a
-            href="https://github.com/Mallee1"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            View My GitHub
-        </a>
+            <div class="nav-links" id="nav-menu">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#lab">Home Lab</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" id="top">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <p class="eyebrow">
+                        CYBERSECURITY PORTFOLIO
+                    </p>
+
+                    <h1>
+                        Max Allee
+                    </h1>
+
+                    <p class="hero-title">
+                        Cybersecurity Student
+                        <span aria-hidden="true">·</span>
+                        Aspiring Security Analyst
+                    </p>
+
+                    <p class="hero-copy">
+                        Former public-safety professional building practical
+                        experience in security operations, Linux, networking,
+                        threat hunting, system administration, and
+                        penetration testing.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#projects">
+                            View My Projects
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                            href="https://github.com/Mallee1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub Profile
+                        </a>
+                    </div>
+
+                    <ul class="hero-details" aria-label="Career information">
+                        <li>
+                            <span>Focus</span>
+                            Security Operations and Blue Team
+                        </li>
+
+                        <li>
+                            <span>Location</span>
+                            North Carolina
+                        </li>
+
+                        <li>
+                            <span>Status</span>
+                            Building hands-on cybersecurity experience
+                        </li>
+                    </ul>
+                </div>
+
+                <aside class="hero-panel" aria-label="Current development">
+                    <p class="panel-label">
+                        CURRENTLY BUILDING
+                    </p>
+
+                    <h2>
+                        Practical security experience
+                    </h2>
+
+                    <ul class="checklist">
+                        <li>Threat hunting with Elastic and Sysmon</li>
+                        <li>Linux administration and SSH hardening</li>
+                        <li>Network traffic analysis</li>
+                        <li>Web application security testing</li>
+                        <li>CompTIA certification preparation</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">
+                        ABOUT ME
+                    </p>
+
+                    <h2>
+                        Public-safety experience meets cybersecurity
+                    </h2>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-copy">
+                        <p>
+                            I am transitioning into cybersecurity after
+                            developing strong investigative, communication,
+                            and decision-making skills through law enforcement,
+                            emergency communications, military service, and
+                            other public-safety roles.
+                        </p>
+
+                        <p>
+                            My current training combines cybersecurity
+                            coursework with hands-on labs involving Windows
+                            event logs, Sysmon, Elastic, Linux, networking,
+                            packet analysis, vulnerability assessment, and
+                            controlled penetration testing.
+                        </p>
+
+                        <p>
+                            I am especially interested in security operations,
+                            threat detection, incident response, and defensive
+                            security. My goal is to bring technical ability,
+                            sound judgment, and calm decision-making to a
+                            security team.
+                        </p>
+                    </div>
+
+                    <div class="principles">
+                        <article class="principle-card">
+                            <span>01</span>
+                            <h3>Investigate</h3>
+                            <p>
+                                Gather evidence, identify patterns, and avoid
+                                conclusions that are not supported by the data.
+                            </p>
+                        </article>
+
+                        <article class="principle-card">
+                            <span>02</span>
+                            <h3>Document</h3>
+                            <p>
+                                Record methods, findings, and remediation steps
+                                so that technical work is understandable and
+                                repeatable.
+                            </p>
+                        </article>
+
+                        <article class="principle-card">
+                            <span>03</span>
+                            <h3>Improve</h3>
+                            <p>
+                                Turn each lab, investigation, and mistake into
+                                a stronger process for the next challenge.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="skills">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">
+                        TECHNICAL SKILLS
+                    </p>
+
+                    <h2>
+                        Tools and technologies
+                    </h2>
+
+                    <p>
+                        Technologies I have used through coursework,
+                        cybersecurity labs, personal projects, and home-lab
+                        administration.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+                    <article class="skill-card">
+                        <h3>Security Operations</h3>
+
+                        <ul class="tag-list">
+                            <li>Elastic</li>
+                            <li>Windows Event Logs</li>
+                            <li>Sysmon</li>
+                            <li>Threat Hunting</li>
+                            <li>Incident Analysis</li>
+                            <li>MITRE ATT&amp;CK</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card">
+                        <h3>Systems</h3>
+
+                        <ul class="tag-list">
+                            <li>Linux</li>
+                            <li>Windows</li>
+                            <li>SSH</li>
+                            <li>UFW</li>
+                            <li>PowerShell</li>
+                            <li>System Hardening</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card">
+                        <h3>Networking</h3>
+
+                        <ul class="tag-list">
+                            <li>TCP/IP</li>
+                            <li>DNS</li>
+                            <li>Nmap</li>
+                            <li>Wireshark</li>
+                            <li>TShark</li>
+                            <li>VPNs</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card">
+                        <h3>Security Testing</h3>
+
+                        <ul class="tag-list">
+                            <li>Service Enumeration</li>
+                            <li>Web Enumeration</li>
+                            <li>Gobuster</li>
+                            <li>Hashcat</li>
+                            <li>Metasploit</li>
+                            <li>Privilege Escalation</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card">
+                        <h3>Development</h3>
+
+                        <ul class="tag-list">
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>C++</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>Git</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card">
+                        <h3>Professional Skills</h3>
+
+                        <ul class="tag-list">
+                            <li>Technical Writing</li>
+                            <li>Investigation</li>
+                            <li>Communication</li>
+                            <li>Decision-Making</li>
+                            <li>Documentation</li>
+                            <li>Teamwork</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">
+                        FEATURED PROJECTS
+                    </p>
+
+                    <h2>
+                        Hands-on cybersecurity work
+                    </h2>
+
+                    <p>
+                        Projects are presented as sanitized case studies.
+                        Passwords, flags, private information, and prohibited
+                        lab solutions are not published.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <div class="project-top">
+                            <span class="project-number">01</span>
+                            <span class="status">Case study in progress</span>
+                        </div>
+
+                        <h3>
+                            Stuxbot Threat Hunt
+                        </h3>
+
+                        <p>
+                            Investigated simulated malicious activity using
+                            Elastic, Windows audit logs, Sysmon, and PowerShell
+                            telemetry. Focused on suspicious file deployment,
+                            registry-based persistence, and PowerShell
+                            Remoting activity.
+                        </p>
+
+                        <ul class="tag-list">
+                            <li>Elastic</li>
+                            <li>Sysmon</li>
+                            <li>PowerShell</li>
+                            <li>Windows Logs</li>
+                            <li>Threat Hunting</li>
+                        </ul>
+
+                        <p class="project-outcome">
+                            <strong>Demonstrates:</strong>
+                            log analysis, hypothesis-driven hunting, event
+                            correlation, and attacker-behavior identification.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-top">
+                            <span class="project-number">02</span>
+                            <span class="status">Case study in progress</span>
+                        </div>
+
+                        <h3>
+                            Web Application Penetration Test
+                        </h3>
+
+                        <p>
+                            Completed a controlled training assessment of a
+                            Linux web server. Enumerated services, identified
+                            an exposed content-management system, analyzed
+                            credential data, gained an initial foothold, and
+                            identified a privilege-escalation path.
+                        </p>
+
+                        <ul class="tag-list">
+                            <li>Nmap</li>
+                            <li>Gobuster</li>
+                            <li>Hashcat</li>
+                            <li>Metasploit</li>
+                            <li>Linux</li>
+                        </ul>
+
+                        <p class="project-outcome">
+                            <strong>Demonstrates:</strong>
+                            reconnaissance, service enumeration, vulnerability
+                            validation, exploitation methodology, and
+                            privilege-escalation analysis.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-top">
+                            <span class="project-number">03</span>
+                            <span class="status">Ongoing project</span>
+                        </div>
+
+                        <h3>
+                            Linux Security Home Lab
+                        </h3>
+
+                        <p>
+                            Built and administered a Raspberry Pi-based Linux
+                            lab for remote access, security experimentation,
+                            networking practice, and system administration.
+                            Configured SSH keys, firewall rules, remote
+                            connectivity, service monitoring, and command-line
+                            security tools.
+                        </p>
+
+                        <ul class="tag-list">
+                            <li>Debian Linux</li>
+                            <li>SSH</li>
+                            <li>UFW</li>
+                            <li>Tailscale</li>
+                            <li>Systemd</li>
+                        </ul>
+
+                        <p class="project-outcome">
+                            <strong>Demonstrates:</strong>
+                            Linux administration, access control, firewall
+                            configuration, troubleshooting, and secure remote
+                            connectivity.
+                        </p>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-top">
+                            <span class="project-number">04</span>
+                            <span class="status">Ongoing project</span>
+                        </div>
+
+                        <h3>
+                            Network Traffic Analysis
+                        </h3>
+
+                        <p>
+                            Captured and analyzed network traffic to better
+                            understand TCP/IP behavior, DNS resolution, SSH
+                            sessions, encrypted traffic, service
+                            communications, and connectivity problems.
+                        </p>
+
+                        <ul class="tag-list">
+                            <li>Wireshark</li>
+                            <li>TShark</li>
+                            <li>TCP/IP</li>
+                            <li>DNS</li>
+                            <li>Packet Analysis</li>
+                        </ul>
+
+                        <p class="project-outcome">
+                            <strong>Demonstrates:</strong>
+                            packet filtering, protocol analysis, traffic
+                            interpretation, and network troubleshooting.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-alt" id="lab">
+            <div class="container lab-grid">
+                <div>
+                    <div class="section-heading">
+                        <p class="eyebrow">
+                            HOME LAB
+                        </p>
+
+                        <h2>
+                            A safe environment for continuous practice
+                        </h2>
+                    </div>
+
+                    <p>
+                        My home lab is centered around a Raspberry Pi running
+                        Debian Linux. I use it to practice system
+                        administration, access control, network analysis,
+                        remote connectivity, service management, and security
+                        tooling.
+                    </p>
+
+                    <p>
+                        The environment gives me a place to test changes,
+                        troubleshoot problems, and document technical
+                        procedures without affecting production systems.
+                    </p>
+
+                    <ul class="lab-list">
+                        <li>Public-key SSH authentication</li>
+                        <li>Host-based firewall configuration</li>
+                        <li>Secure remote access through Tailscale</li>
+                        <li>Linux permissions and user management</li>
+                        <li>Packet capture and network enumeration</li>
+                        <li>Service monitoring with systemd</li>
+                    </ul>
+                </div>
+
+                <div class="terminal" aria-label="Example Linux commands">
+                    <div class="terminal-bar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <p>max@security-lab</p>
+                    </div>
+
+                    <div class="terminal-body">
+                        <p>
+                            <span class="prompt">$</span>
+                            <code>systemctl status ssh</code>
+                        </p>
+
+                        <p class="output">
+                            active (running)
+                        </p>
+
+                        <p>
+                            <span class="prompt">$</span>
+                            <code>sudo ufw status</code>
+                        </p>
+
+                        <p class="output">
+                            Status: active
+                        </p>
+
+                        <p>
+                            <span class="prompt">$</span>
+                            <code>ss -tulpen</code>
+                        </p>
+
+                        <p class="output">
+                            Reviewing listening services...
+                        </p>
+
+                        <p>
+                            <span class="prompt">$</span>
+                            <code>tshark -i tailscale0</code>
+                        </p>
+
+                        <p class="output">
+                            Capturing encrypted network traffic...
+                        </p>
+
+                        <p>
+                            <span class="prompt">$</span>
+                            <span class="cursor" aria-hidden="true"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">
+                        EDUCATION AND TRAINING
+                    </p>
+
+                    <h2>
+                        Building technical knowledge on a strong professional
+                        foundation
+                    </h2>
+                </div>
+
+                <div class="timeline">
+                    <article class="timeline-item">
+                        <div class="timeline-marker"></div>
+
+                        <div>
+                            <p class="timeline-label">
+                                CYBERSECURITY TRAINING
+                            </p>
+
+                            <h3>
+                                VET TEC 2.0 — Technology Professional Track
+                            </h3>
+
+                            <p>
+                                Hands-on preparation covering security
+                                operations, networking, Linux, threat hunting,
+                                penetration testing, Security+, Network+, and
+                                CySA+ concepts.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-marker"></div>
+
+                        <div>
+                            <p class="timeline-label">
+                                CURRENT EDUCATION
+                            </p>
+
+                            <h3>
+                                Bachelor's Studies in Computer Science
+                            </h3>
+
+                            <p>
+                                Coursework includes programming, databases,
+                                data structures, algorithms, networking,
+                                operating systems, and the software-development
+                                lifecycle. Current GPA: 4.0.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-marker"></div>
+
+                        <div>
+                            <p class="timeline-label">
+                                PREVIOUS EDUCATION
+                            </p>
+
+                            <h3>
+                                Old Dominion University
+                            </h3>
+
+                            <p>
+                                Bachelor's degree in Criminal Justice and
+                                Sociology. Graduated with a 4.0 GPA as the top
+                                graduate.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact-section" id="contact">
+            <div class="container">
+                <div class="contact-card">
+                    <p class="eyebrow">
+                        CONTACT
+                    </p>
+
+                    <h2>
+                        Let's connect
+                    </h2>
+
+                    <p>
+                        I am building toward cybersecurity internship and
+                        entry-level security analyst opportunities. My GitHub
+                        contains current projects, documentation, and
+                        technical practice.
+                    </p>
+
+                    <div class="contact-actions">
+                        <a
+                            class="button button-primary"
+                            href="https://github.com/Mallee1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit GitHub
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                            href="https://www.linkedin.com/in/maxallee/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Connect on LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>
+                &copy; <span id="current-year"></span> Max Allee
+            </p>
+
+            <p>
+                Built with HTML, CSS, JavaScript, and GitHub Pages.
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
