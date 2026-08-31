@@ -22,7 +22,7 @@ The portfolio currently highlights:
 
 - Stuxbot threat-hunting investigation
 - Web application penetration-testing lab
-- Linux security home lab
+- - [Linux Security Home Lab case study](https://mallee1.github.io/projects/linux-home-lab/)
 - Network traffic analysis practice
 
 ## Built With

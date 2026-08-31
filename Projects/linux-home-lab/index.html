@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A case study documenting Max Allee's Raspberry Pi-based Linux security home lab, including SSH, UFW, Tailscale, service monitoring, and network analysis."
+    >
+
+    <meta name="theme-color" content="#07111f">
+
+    <title>Linux Security Home Lab | Max Allee</title>
+
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="../../script.js" defer></script>
+</head>
+
+<body class="project-page">
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+            <a
+                class="brand"
+                href="../../index.html#top"
+                aria-label="Max Allee homepage"
+            >
+                MA<span>.</span>
+            </a>
+
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+                aria-label="Open navigation menu"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-links" id="nav-menu">
+                <a href="../../index.html#about">About</a>
+                <a href="../../index.html#skills">Skills</a>
+                <a href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#lab">Home Lab</a>
+                <a href="../../index.html#education">Education</a>
+                <a href="../../index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="project-hero">
+            <div class="container">
+                <a
+                    class="back-link"
+                    href="../../index.html#projects"
+                >
+                    <span aria-hidden="true">←</span>
+                    Back to projects
+                </a>
+
+                <p class="eyebrow">
+                    HOME LAB CASE STUDY
+                </p>
+
+                <h1>
+                    Linux Security Home Lab
+                </h1>
+
+                <p class="project-lead">
+                    Built and secured a Raspberry Pi-based Debian Linux
+                    environment for practicing remote administration,
+                    access control, firewall configuration, service
+                    monitoring, network analysis, and cybersecurity
+                    tooling.
+                </p>
+
+                <ul class="project-meta" aria-label="Project information">
+                    <li>
+                        <strong>Status</strong>
+                        Ongoing
+                    </li>
+
+                    <li>
+                        <strong>Category</strong>
+                        Defensive Security
+                    </li>
+
+                    <li>
+                        <strong>Platform</strong>
+                        Raspberry Pi 5
+                    </li>
+
+                    <li>
+                        <strong>Operating System</strong>
+                        Debian Linux
+                    </li>
+                </ul>
+
+                <div class="hero-actions">
+                    <a
+                        class="button button-primary"
+                        href="#implementation"
+                    >
+                        View Implementation
+                    </a>
+
+                    <a
+                        class="button button-secondary"
+                        href="https://github.com/Mallee1/mallee1.github.io"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        View Website Source
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container case-study-layout">
+                <article class="case-study-main">
+                    <section>
+                        <p class="eyebrow">
+                            OVERVIEW
+                        </p>
+
+                        <h2>
+                            Why I built the lab
+                        </h2>
+
+                        <p>
+                            I wanted an environment that would let me move
+                            beyond reading about Linux and cybersecurity
+                            concepts. The goal was to create an always-available
+                            system where I could safely practice commands,
+                            configure services, troubleshoot connectivity,
+                            examine logs, and test security controls.
+                        </p>
+
+                        <p>
+                            A Raspberry Pi provided a dedicated Linux platform
+                            that could remain separate from my primary Windows
+                            and macOS computers. This made it useful for
+                            controlled experimentation while also requiring me
+                            to manage a real operating system and networked
+                            service.
+                        </p>
+
+                        <div class="project-note">
+                            <strong>Portfolio safety note:</strong>
+                            This case study is sanitized. It does not include
+                            passwords, private keys, exact IP addresses,
+                            usernames, internal network diagrams, or complete
+                            firewall rules.
+                        </div>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            OBJECTIVES
+                        </p>
+
+                        <h2>
+                            What the project needed to accomplish
+                        </h2>
+
+                        <div class="objectives-grid">
+                            <article class="objective-card">
+                                <span>01</span>
+
+                                <h3>
+                                    Secure remote access
+                                </h3>
+
+                                <p>
+                                    Administer the system remotely without
+                                    exposing an SSH service directly to the
+                                    public internet.
+                                </p>
+                            </article>
+
+                            <article class="objective-card">
+                                <span>02</span>
+
+                                <h3>
+                                    Reduce the attack surface
+                                </h3>
+
+                                <p>
+                                    Identify listening services, restrict
+                                    inbound access, and disable unnecessary
+                                    exposure.
+                                </p>
+                            </article>
+
+                            <article class="objective-card">
+                                <span>03</span>
+
+                                <h3>
+                                    Improve visibility
+                                </h3>
+
+                                <p>
+                                    Use logs, service-management tools, and
+                                    packet-capture utilities to understand
+                                    system and network behavior.
+                                </p>
+                            </article>
+
+                            <article class="objective-card">
+                                <span>04</span>
+
+                                <h3>
+                                    Support continued practice
+                                </h3>
+
+                                <p>
+                                    Create a stable platform for Linux,
+                                    networking, scripting, containers, and
+                                    defensive-security exercises.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            ARCHITECTURE
+                        </p>
+
+                        <h2>
+                            Remote-management path
+                        </h2>
+
+                        <p>
+                            Remote administration is performed through a
+                            private connectivity layer rather than by
+                            forwarding the SSH port from the home router to
+                            the public internet.
+                        </p>
+
+                        <div
+                            class="architecture-flow"
+                            aria-label="Administrative device connects through a private remote-access network to the Debian Linux lab"
+                        >
+                            <div class="architecture-node">
+                                <strong>Administrative Device</strong>
+                                <span>Windows or macOS client</span>
+                            </div>
+
+                            <div class="flow-arrow" aria-hidden="true">
+                                →
+                            </div>
+
+                            <div class="architecture-node">
+                                <strong>Private Remote Access</strong>
+                                <span>Tailscale connectivity</span>
+                            </div>
+
+                            <div class="flow-arrow" aria-hidden="true">
+                                →
+                            </div>
+
+                            <div class="architecture-node">
+                                <strong>Linux Lab</strong>
+                                <span>SSH, UFW, logging, and tools</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            SECURITY CONTROLS
+                        </p>
+
+                        <h2>
+                            Controls implemented
+                        </h2>
+
+                        <div class="results-grid">
+                            <article class="result-card">
+                                <h3>
+                                    SSH key authentication
+                                </h3>
+
+                                <p>
+                                    Configured public-key authentication for
+                                    approved administrative devices and
+                                    protected the authorized-key files with
+                                    appropriate Linux permissions.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Root-login restriction
+                                </h3>
+
+                                <p>
+                                    Confirmed that direct SSH login as the root
+                                    account is disabled, requiring
+                                    administration through an approved user and
+                                    controlled privilege elevation.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Host firewall
+                                </h3>
+
+                                <p>
+                                    Enabled UFW with a default-deny approach for
+                                    unsolicited inbound traffic and limited SSH
+                                    access to trusted network paths.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Private remote connectivity
+                                </h3>
+
+                                <p>
+                                    Configured Tailscale so the system could be
+                                    managed remotely without publicly exposing
+                                    the SSH port.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Service inventory
+                                </h3>
+
+                                <p>
+                                    Reviewed active services and listening
+                                    ports using systemd, socket-inspection
+                                    commands, and network-scanning tools.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Logging and validation
+                                </h3>
+
+                                <p>
+                                    Used service status, journal logs, packet
+                                    capture, and connection testing to verify
+                                    that controls worked as intended.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section id="implementation">
+                        <p class="eyebrow">
+                            IMPLEMENTATION
+                        </p>
+
+                        <h2>
+                            How I built and validated the environment
+                        </h2>
+
+                        <ol class="case-steps">
+                            <li>
+                                <div>
+                                    <h3>
+                                        Established a system baseline
+                                    </h3>
+
+                                    <p>
+                                        Confirmed the operating system,
+                                        hardware, user context, network
+                                        interfaces, active services, and
+                                        listening ports before making security
+                                        changes.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div>
+                                    <h3>
+                                        Configured administrative access
+                                    </h3>
+
+                                    <p>
+                                        Created and tested SSH keys from
+                                        approved client devices. Added the
+                                        public keys to the Linux account and
+                                        verified the permissions on the
+                                        <code>.ssh</code> directory and
+                                        <code>authorized_keys</code> file.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div>
+                                    <h3>
+                                        Hardened the SSH configuration
+                                    </h3>
+
+                                    <p>
+                                        Reviewed the effective SSH settings,
+                                        confirmed public-key support, disabled
+                                        direct root login, and tested access
+                                        before and after configuration changes.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div>
+                                    <h3>
+                                        Applied firewall restrictions
+                                    </h3>
+
+                                    <p>
+                                        Enabled UFW, used a default-deny
+                                        inbound policy, and allowed
+                                        administrative traffic only through
+                                        trusted local or private remote-access
+                                        paths.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div>
+                                    <h3>
+                                        Added private remote access
+                                    </h3>
+
+                                    <p>
+                                        Installed and authenticated Tailscale,
+                                        verified the private interface, and
+                                        tested SSH access from approved remote
+                                        devices.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div>
+                                    <h3>
+                                        Installed security and network tools
+                                    </h3>
+
+                                    <p>
+                                        Added tools for network discovery,
+                                        packet capture, DNS testing, web
+                                        enumeration, connectivity testing,
+                                        version control, and container-based
+                                        experimentation.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div>
+                                    <h3>
+                                        Validated the final configuration
+                                    </h3>
+
+                                    <p>
+                                        Rechecked firewall status, listening
+                                        services, remote connectivity, SSH
+                                        logs, and packet activity instead of
+                                        assuming the configuration worked.
+                                    </p>
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            VALIDATION
+                        </p>
+
+                        <h2>
+                            Example verification commands
+                        </h2>
+
+                        <p>
+                            These are representative commands used to validate
+                            the environment. They do not expose private
+                            addresses or sensitive configuration values.
+                        </p>
+
+                        <div class="command-block">
+                            <pre><code>systemctl status ssh
+sudo ufw status verbose
+ss -tulpen
+tailscale status
+sudo journalctl -u ssh --since today</code></pre>
+                        </div>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            TROUBLESHOOTING
+                        </p>
+
+                        <h2>
+                            Problems investigated
+                        </h2>
+
+                        <div class="results-grid">
+                            <article class="result-card">
+                                <h3>
+                                    SSH public-key rejection
+                                </h3>
+
+                                <p>
+                                    When a new client could not authenticate,
+                                    I reviewed the public key, the
+                                    <code>authorized_keys</code> entry, file
+                                    ownership, and restrictive SSH-directory
+                                    permissions.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Remote route conflict
+                                </h3>
+
+                                <p>
+                                    Investigated failed remote connections when
+                                    a travel router and commercial VPN altered
+                                    routing behavior. I isolated the issue by
+                                    reviewing VPN, LAN-access, kill-switch, and
+                                    routing settings.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    VPN-related DNS failure
+                                </h3>
+
+                                <p>
+                                    Compared local network behavior, DNS
+                                    resolution, and VPN configuration after a
+                                    browser reported a DNS configuration
+                                    failure.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Service verification
+                                </h3>
+
+                                <p>
+                                    Used systemd status output, socket
+                                    inspection, and packet capture to
+                                    distinguish between a running service and
+                                    one that was actually reachable.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            OUTCOME
+                        </p>
+
+                        <h2>
+                            What the project demonstrates
+                        </h2>
+
+                        <p>
+                            The lab demonstrates more than installing security
+                            tools. It shows the ability to establish a
+                            baseline, make controlled configuration changes,
+                            validate those changes, investigate failures, and
+                            document the results.
+                        </p>
+
+                        <ul class="case-list">
+                            <li>
+                                Linux command-line administration
+                            </li>
+
+                            <li>
+                                User, group, file, and permission management
+                            </li>
+
+                            <li>
+                                SSH configuration and key management
+                            </li>
+
+                            <li>
+                                Host-based firewall configuration
+                            </li>
+
+                            <li>
+                                Service and port enumeration
+                            </li>
+
+                            <li>
+                                Secure remote-connectivity troubleshooting
+                            </li>
+
+                            <li>
+                                Log and packet analysis
+                            </li>
+
+                            <li>
+                                Technical documentation
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            LESSONS LEARNED
+                        </p>
+
+                        <h2>
+                            Key takeaways
+                        </h2>
+
+                        <div class="results-grid">
+                            <article class="result-card">
+                                <h3>
+                                    Validate every control
+                                </h3>
+
+                                <p>
+                                    A configuration file can look correct while
+                                    the effective service behavior is
+                                    different. Status checks, logs, and
+                                    connection tests provide stronger evidence.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Permissions affect authentication
+                                </h3>
+
+                                <p>
+                                    Linux ownership and permission settings are
+                                    directly connected to whether SSH accepts
+                                    an authorized key.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Security layers interact
+                                </h3>
+
+                                <p>
+                                    Host firewalls, router settings, VPNs, DNS,
+                                    and private-overlay networking can each
+                                    affect the same connection.
+                                </p>
+                            </article>
+
+                            <article class="result-card">
+                                <h3>
+                                    Documentation improves recovery
+                                </h3>
+
+                                <p>
+                                    Recording changes and validation steps
+                                    makes it easier to reverse a mistake and
+                                    troubleshoot the next issue.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section>
+                        <p class="eyebrow">
+                            NEXT STEPS
+                        </p>
+
+                        <h2>
+                            Planned improvements
+                        </h2>
+
+                        <ul class="case-list">
+                            <li>
+                                Evaluate disabling SSH password authentication
+                                after confirming that all approved devices and
+                                recovery methods work correctly.
+                            </li>
+
+                            <li>
+                                Add automated update and patch-status
+                                reporting.
+                            </li>
+
+                            <li>
+                                Centralize selected system and security logs
+                                for easier review.
+                            </li>
+
+                            <li>
+                                Expand container-based practice while
+                                separating experimental services from the host.
+                            </li>
+
+                            <li>
+                                Create repeatable configuration and validation
+                                checklists.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <a
+                        class="back-link bottom-back-link"
+                        href="../../index.html#projects"
+                    >
+                        <span aria-hidden="true">←</span>
+                        Return to featured projects
+                    </a>
+                </article>
+
+                <aside class="case-study-sidebar">
+                    <div class="sidebar-card">
+                        <p class="panel-label">
+                            PROJECT SNAPSHOT
+                        </p>
+
+                        <dl class="snapshot-list">
+                            <div>
+                                <dt>Role</dt>
+                                <dd>Designer and administrator</dd>
+                            </div>
+
+                            <div>
+                                <dt>Environment</dt>
+                                <dd>Personal isolated home lab</dd>
+                            </div>
+
+                            <div>
+                                <dt>Primary focus</dt>
+                                <dd>Linux and defensive security</dd>
+                            </div>
+
+                            <div>
+                                <dt>Remote access</dt>
+                                <dd>SSH through Tailscale</dd>
+                            </div>
+
+                            <div>
+                                <dt>Project status</dt>
+                                <dd>Ongoing development</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <p class="panel-label">
+                            TECHNOLOGIES
+                        </p>
+
+                        <ul class="tag-list">
+                            <li>Debian Linux</li>
+                            <li>Raspberry Pi</li>
+                            <li>SSH</li>
+                            <li>UFW</li>
+                            <li>Tailscale</li>
+                            <li>Systemd</li>
+                            <li>Nmap</li>
+                            <li>TCPDump</li>
+                            <li>TShark</li>
+                            <li>Git</li>
+                            <li>Docker</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <p class="panel-label">
+                            CORE SKILLS
+                        </p>
+
+                        <ul class="case-list compact-list">
+                            <li>Access control</li>
+                            <li>Firewall configuration</li>
+                            <li>Network troubleshooting</li>
+                            <li>Service management</li>
+                            <li>Log analysis</li>
+                            <li>Technical documentation</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>
+                &copy; <span id="current-year"></span> Max Allee
+            </p>
+
+            <p>
+                Sanitized cybersecurity home-lab case study.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
