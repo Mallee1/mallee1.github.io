@@ -474,96 +474,141 @@
             </div>
         </section>
 
-        <section class="section section-alt" id="lab">
-            <div class="container lab-grid">
-                <div>
-                    <div class="section-heading">
-                        <p class="eyebrow">
-                            HOME LAB
-                        </p>
+<section class="section section-alt" id="lab">
+    <div class="container">
+        <div class="section-heading">
+            <p class="eyebrow">
+                CYBERSECURITY HOME LAB
+            </p>
 
-                        <h2>
-                            A safe environment for continuous practice
-                        </h2>
-                    </div>
+            <h2>
+                A multi-system environment for offensive and defensive practice
+            </h2>
 
-                    <p>
-                        My home lab is centered around a Raspberry Pi running
-                        Debian Linux. I use it to practice system
-                        administration, access control, network analysis,
-                        remote connectivity, service management, and security
-                        tooling.
-                    </p>
+            <p>
+                My cybersecurity home lab is a multi-node environment designed
+                for hands-on practice with offensive security, defensive
+                monitoring, Linux administration, networking, and incident
+                analysis. Each system has a dedicated role, allowing me to
+                generate activity, investigate it, and practice securing
+                Linux infrastructure.
+            </p>
+        </div>
 
-                    <p>
-                        The environment gives me a place to test changes,
-                        troubleshoot problems, and document technical
-                        procedures without affecting production systems.
-                    </p>
+        <div class="lab-architecture">
+            <article class="lab-node attacker-node">
+                <p class="node-label">OFFENSIVE</p>
+                <h3>Attacker-Pi</h3>
+                <p>
+                    Dedicated system for controlled reconnaissance, network
+                    scanning, enumeration, and authorized security testing
+                    against systems within my lab.
+                </p>
 
-                    <ul class="lab-list">
-                        <li>Public-key SSH authentication</li>
-                        <li>Host-based firewall configuration</li>
-                        <li>Secure remote access through Tailscale</li>
-                        <li>Linux permissions and user management</li>
-                        <li>Packet capture and network enumeration</li>
-                        <li>Service monitoring with systemd</li>
-                    </ul>
-                </div>
+                <ul class="tag-list">
+                    <li>Linux</li>
+                    <li>Nmap</li>
+                    <li>Enumeration</li>
+                    <li>Security Testing</li>
+                </ul>
+            </article>
 
-                <div class="terminal" aria-label="Example Linux commands">
-                    <div class="terminal-bar">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <p>max@security-lab</p>
-                    </div>
-
-                    <div class="terminal-body">
-                        <p>
-                            <span class="prompt">$</span>
-                            <code>systemctl status ssh</code>
-                        </p>
-
-                        <p class="output">
-                            active (running)
-                        </p>
-
-                        <p>
-                            <span class="prompt">$</span>
-                            <code>sudo ufw status</code>
-                        </p>
-
-                        <p class="output">
-                            Status: active
-                        </p>
-
-                        <p>
-                            <span class="prompt">$</span>
-                            <code>ss -tulpen</code>
-                        </p>
-
-                        <p class="output">
-                            Reviewing listening services...
-                        </p>
-
-                        <p>
-                            <span class="prompt">$</span>
-                            <code>tshark -i tailscale0</code>
-                        </p>
-
-                        <p class="output">
-                            Capturing encrypted network traffic...
-                        </p>
-
-                        <p>
-                            <span class="prompt">$</span>
-                            <span class="cursor" aria-hidden="true"></span>
-                        </p>
-                    </div>
-                </div>
+            <div class="lab-connection" aria-hidden="true">
+                <span>Controlled Testing</span>
+                <div class="connection-line">↓</div>
             </div>
-        </section>
+
+            <article class="lab-node target-node">
+                <p class="node-label">TARGET</p>
+                <h3>Target-Pi</h3>
+                <p>
+                    Isolated Linux target used to practice service
+                    enumeration, security testing, system hardening, firewall
+                    configuration, and detection techniques.
+                </p>
+
+                <ul class="tag-list">
+                    <li>Debian Linux</li>
+                    <li>SSH</li>
+                    <li>UFW</li>
+                    <li>Services</li>
+                </ul>
+            </article>
+
+            <div class="lab-connection" aria-hidden="true">
+                <span>Logs &amp; Network Activity</span>
+                <div class="connection-line">↓</div>
+            </div>
+
+            <article class="lab-node defender-node">
+                <p class="node-label">DEFENSIVE</p>
+                <h3>Defender-Pi</h3>
+                <p>
+                    Defensive system used for monitoring, log analysis,
+                    network visibility, security tooling, and investigation
+                    of activity generated throughout the lab.
+                </p>
+
+                <ul class="tag-list">
+                    <li>Linux</li>
+                    <li>Monitoring</li>
+                    <li>Log Analysis</li>
+                    <li>Threat Detection</li>
+                </ul>
+            </article>
+
+            <div class="cloud-divider">
+                <span>INTERNET-FACING ENVIRONMENT</span>
+            </div>
+
+            <article class="lab-node cloud-node">
+                <p class="node-label">CLOUD</p>
+                <h3>Cloud Server</h3>
+                <p>
+                    Internet-facing Linux server used to practice secure
+                    administration, service monitoring, log analysis, and
+                    investigation of real-world internet activity such as
+                    automated scanning and authentication attempts.
+                </p>
+
+                <ul class="tag-list">
+                    <li>Linux</li>
+                    <li>SSH</li>
+                    <li>Logging</li>
+                    <li>Internet Exposure</li>
+                </ul>
+            </article>
+        </div>
+
+        <div class="lab-summary">
+            <div>
+                <p class="eyebrow">LAB WORKFLOW</p>
+
+                <h3>
+                    Generate. Observe. Investigate. Harden.
+                </h3>
+
+                <p>
+                    The environment lets me practice both sides of a security
+                    event: generating controlled activity from an attacker
+                    system, observing its effect on a target, investigating
+                    available telemetry, and applying defensive controls.
+                </p>
+            </div>
+
+            <ul class="lab-list">
+                <li>Linux administration and troubleshooting</li>
+                <li>Network and service enumeration</li>
+                <li>SSH authentication and access control</li>
+                <li>Host-based firewall configuration</li>
+                <li>Log review and security monitoring</li>
+                <li>Network traffic analysis</li>
+                <li>Secure remote connectivity</li>
+                <li>Controlled offensive-security testing</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
         <section class="section" id="education">
             <div class="container">
