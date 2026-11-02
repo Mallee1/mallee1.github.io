@@ -29,7 +29,8 @@ The portfolio currently highlights:
 
 - Stuxbot threat-hunting investigation — case study in progress
 - [Linux Security Home Lab case study](https://mallee1.github.io/projects/linux-home-lab/)
-- Network traffic analysis practice — ongoing project
+- [Network Perimeter Assessment case study](https://mallee1.github.io/projects/network-perimeter-assessment/)
+  — external TCP/UDP testing, packet interpretation, and clearly bounded findings
 - Controlled web application penetration-testing lab — case study in progress
 
 ## Built With
@@ -52,4 +53,5 @@ lab solutions are not published.
 
 - [GitHub](https://github.com/Mallee1)
 - [LinkedIn](https://www.linkedin.com/in/maxallee/)
+
 

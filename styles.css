@@ -992,6 +992,62 @@ section {
     color: var(--text);
 }
 
+.case-study-main {
+    min-width: 0;
+}
+
+.evidence-table-wrapper {
+    margin-top: 30px;
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+}
+
+.evidence-table {
+    width: 100%;
+    min-width: 610px;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    line-height: 1.75;
+}
+
+.evidence-table caption {
+    padding: 20px;
+    color: var(--text);
+    font-weight: 750;
+    text-align: left;
+}
+
+.evidence-table th,
+.evidence-table td {
+    width: 33.333%;
+    padding: 18px;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+    text-align: left;
+    overflow-wrap: anywhere;
+}
+
+.evidence-table thead {
+    background: var(--accent-soft);
+    color: var(--text);
+}
+
+.evidence-table tbody th {
+    color: var(--text);
+    font-weight: 650;
+}
+
+.evidence-table td {
+    color: var(--text-muted);
+}
+
+.case-study-main section[id] {
+    scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
 .objectives-grid,
 .results-grid {
     display: grid;

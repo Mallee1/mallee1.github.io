@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="Max Allee's home-network perimeter assessment: external TCP and UDP scanning, packet interpretation, layered NAT and firewall troubleshooting, and evidence-based conclusions."
+    >
+    <meta name="theme-color" content="#07111f">
+    <title>Network Perimeter Assessment | Max Allee</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <script src="../../script.js" defer></script>
+</head>
+
+<body class="project-page">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <nav class="nav container" aria-label="Primary navigation">
+            <a class="brand" href="../../index.html#top" aria-label="Max Allee homepage">
+                MA<span>.</span>
+            </a>
+            <button
+                class="nav-toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nav-menu"
+                aria-label="Open navigation menu"
+            >
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-links" id="nav-menu">
+                <a href="../../index.html#about">About</a>
+                <a href="../../index.html#skills">Skills</a>
+                <a href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#lab">Home Lab</a>
+                <a href="../../index.html#education">Education</a>
+                <a href="../../index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="project-hero">
+            <div class="container">
+                <a class="back-link" href="../../index.html#projects">
+                    <span aria-hidden="true">←</span> Back to projects
+                </a>
+                <p class="eyebrow">NETWORK TRAFFIC ANALYSIS CASE STUDY</p>
+                <h1>Network Perimeter Assessment</h1>
+                <p class="project-lead">
+                    Investigated my home network from an external cloud VPS,
+                    combining TCP and UDP scans with packet review to assess
+                    public service exposure and interpret ambiguous results.
+                </p>
+                <ul class="project-meta" aria-label="Project information">
+                    <li><strong>Status</strong>Case study published</li>
+                    <li><strong>Investigation</strong>September 28–29, 2026</li>
+                    <li><strong>Category</strong>Network Security</li>
+                    <li><strong>Published</strong>November 2, 2026</li>
+                </ul>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#findings">View Findings</a>
+                    <a
+                        class="button button-secondary"
+                        href="https://github.com/Mallee1/mallee1.github.io/blob/main/projects/network-perimeter-assessment/index.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >View Case Study Source</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container case-study-layout">
+                <article class="case-study-main">
+                    <section id="objective">
+                        <p class="eyebrow">OBJECTIVE</p>
+                        <h2>Could an outside system reach a service?</h2>
+                        <p>
+                            A service listening inside a home lab is not
+                            necessarily reachable from the internet. I wanted
+                            to assess that distinction by testing my own home
+                            network from a cloud virtual private server (VPS),
+                            outside the home network, and reviewing the traffic
+                            associated with the investigation.
+                        </p>
+                        <p>
+                            The objective was to identify evidence of public
+                            service exposure, understand how multiple routers,
+                            NAT, and firewall controls could affect connectivity,
+                            and document what the evidence could support.
+                        </p>
+                        <div class="project-note">
+                            <strong>Evidence basis:</strong>
+                            This retrospective uses the available summary of
+                            my September 28–29, 2026 investigation. Original
+                            scan logs and packet captures have not been
+                            verified as available for this write-up. Findings
+                            are reported at summary level; no reconstructed
+                            scan output is presented as original evidence.
+                        </div>
+                    </section>
+
+                    <section id="environment">
+                        <p class="eyebrow">ENVIRONMENT AND SCOPE</p>
+                        <h2>An external view of a layered home network</h2>
+                        <div class="results-grid">
+                            <article class="result-card">
+                                <h3>External test system</h3>
+                                <p>
+                                    A cloud VPS running Nmap provided the
+                                    external scanning vantage point. Its address
+                                    is represented as <code>[Cloud_VPS_IP]</code>.
+                                </p>
+                            </article>
+                            <article class="result-card">
+                                <h3>Assessment target</h3>
+                                <p>
+                                    My home-network public address is represented
+                                    as <code>[Home_Public_IP]</code>. Testing
+                                    concerned my own environment.
+                                </p>
+                            </article>
+                            <article class="result-card">
+                                <h3>Network controls</h3>
+                                <p>
+                                    Multiple routers, Network Address Translation
+                                    (NAT), and firewall controls formed the
+                                    environment. NAT translates addresses;
+                                    firewall rules control permitted traffic.
+                                </p>
+                            </article>
+                            <article class="result-card">
+                                <h3>Coverage</h3>
+                                <p>
+                                    TCP ports 1–65535 and selected UDP ports
+                                    were tested. Packet captures were reviewed
+                                    for connection attempts and replies.
+                                </p>
+                            </article>
+                        </div>
+                        <p>
+                            This was a perimeter-reachability assessment.
+                            Internal access, authenticated access, application
+                            vulnerabilities, and a comprehensive IPv6 assessment
+                            were not established by the available evidence.
+                        </p>
+                    </section>
+
+                    <section id="methodology">
+                        <p class="eyebrow">METHODOLOGY</p>
+                        <h2>Combine scan results with packet observations</h2>
+                        <p>
+                            The steps below summarize the work performed.
+                            They do not reconstruct exact command options,
+                            timing, packet counts, or the selected UDP port list.
+                        </p>
+                        <ol class="case-steps">
+                            <li>
+                                <div>
+                                    <h3>Test from outside the home network</h3>
+                                    <p>
+                                        Conducted scans from the cloud VPS
+                                        against the home-network public address.
+                                        This tested a different access path from
+                                        a connection within the local network.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Expand TCP coverage</h3>
+                                    <p>
+                                        Completed a TCP scan covering ports
+                                        1–65535 to look beyond commonly used
+                                        service ports. No open TCP ports were
+                                        confirmed in that assessment.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Assess selected UDP ports</h3>
+                                    <p>
+                                        Tested a subset of UDP ports and
+                                        encountered <code>open|filtered</code>
+                                        results. Preserved that uncertainty
+                                        rather than treating the label as
+                                        confirmation of a reachable service.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Review packets and the network path</h3>
+                                    <p>
+                                        Examined captures showing outbound TCP
+                                        SYN packets without corresponding
+                                        observed replies. Considered the layered
+                                        router, NAT, and firewall environment
+                                        without assigning an unverified cause
+                                        to a particular device.
+                                    </p>
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section id="findings">
+                        <p class="eyebrow">OBSERVATIONS AND INTERPRETATION</p>
+                        <h2>Keep the finding within the evidence</h2>
+                        <p>
+                            These observations come from the investigation
+                            summary, with the raw-artifact limitation disclosed
+                            above. Each interpretation has a defined boundary.
+                        </p>
+                        <div
+                            class="evidence-table-wrapper"
+                            role="region"
+                            aria-label="Assessment findings table; scroll horizontally on small screens"
+                            tabindex="0"
+                        >
+                            <table class="evidence-table">
+                                <caption>Reported observations and supported conclusions</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Observation</th>
+                                        <th scope="col">Supported interpretation</th>
+                                        <th scope="col">Limit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">TCP: ports 1–65535 scanned; no open ports confirmed</th>
+                                        <td>No externally reachable TCP service was established from that VPS during the test window.</td>
+                                        <td>This does not prove every port was closed or that the network was free of vulnerabilities.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">UDP: selected ports returned <code>open|filtered</code></th>
+                                        <td>Inconclusive. The scan could not distinguish an open, nonresponding service from filtering.</td>
+                                        <td>Neither exposed services nor their absence were established. Untested UDP ports remain outside scope.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Capture: outbound SYN packets; no corresponding replies observed</th>
+                                        <td>Connection attempts were visible in the examined traffic, without an observed response.</td>
+                                        <td>This does not prove arrival at the home router or locate a blocking device.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Environment: multiple routers, NAT, and firewall controls</th>
+                                        <td>Several network layers were relevant to troubleshooting the access path.</td>
+                                        <td>The available evidence did not isolate which layer caused the missing replies.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>
+                            A TCP SYN requests the start of a connection.
+                            In a SYN scan, a SYN/ACK response supports an open
+                            port; a reset supports a closed port. Silence alone
+                            does not establish a closed port. Filtering, routing
+                            problems, or packet loss are possible explanations,
+                            not verified causes in this investigation.
+                            <a href="https://nmap.org/book/synscan.html">Nmap's TCP SYN scan documentation</a>
+                            explains these response patterns.
+                        </p>
+                        <p>
+                            UDP does not use the TCP handshake. An open UDP
+                            service may ignore an unsuitable probe, while a
+                            firewall may also drop it silently. That ambiguity
+                            is why <code>open|filtered</code> must remain
+                            inconclusive, as described in
+                            <a href="https://nmap.org/book/scan-methods-udp-scan.html">Nmap's UDP scan documentation</a>.
+                        </p>
+                    </section>
+
+                    <section id="sanitized-examples">
+                        <p class="eyebrow">SANITIZED EXAMPLES</p>
+                        <h2>Show the scope without exposing the network</h2>
+                        <p>
+                            These are illustrative command templates for a
+                            future authorized retest, not a transcript of the
+                            September investigation. Replace the bracketed
+                            placeholders before use. The UDP port list must be
+                            selected for that retest; it is not recovered here.
+                        </p>
+                        <div class="command-block">
+                            <pre><code># Illustrative TCP scan template
+sudo nmap -sS -p 1-65535 --reason "[Home_Public_IP]"
+
+# Illustrative selected-UDP scan template
+sudo nmap -sU -p "[UDP_Port_List]" --reason "[Home_Public_IP]"</code></pre>
+                        </div>
+                        <p>
+                            <code>-sS</code> selects a TCP SYN scan;
+                            <code>-sU</code> selects UDP scanning;
+                            <code>-p</code> specifies the ports; and
+                            <code>--reason</code> asks Nmap to explain its state
+                            classifications. A public address such as
+                            <code>[Home_Public_IP]</code> and an internal host
+                            such as <code>[Private_Lab_IP]</code> represent
+                            different test targets and access paths.
+                        </p>
+                        <div class="project-note">
+                            <strong>Publication boundary:</strong>
+                            No real network addresses, credentials, hostnames,
+                            packet payloads, or detailed firewall configurations
+                            are included. These examples contain no fabricated
+                            results, service banners, or packet timestamps.
+                        </div>
+                    </section>
+
+                    <section id="limitations">
+                        <p class="eyebrow">LIMITATIONS</p>
+                        <h2>What this assessment could not establish</h2>
+                        <ul class="case-list">
+                            <li>
+                                Original logs and captures were not independently
+                                rechecked for this publication. Exact scan flags,
+                                retries, timeouts, selected UDP ports, and raw
+                                packet details are not reproduced.
+                            </li>
+                            <li>
+                                Results reflect one external VPS and the
+                                September 28–29 test window. Other source
+                                networks, later configuration changes, or
+                                intermittent services could produce different
+                                observations.
+                            </li>
+                            <li>
+                                Capture placement, filters, and time coverage
+                                were not independently revalidated. Missing
+                                replies in the examined capture cannot identify
+                                where traffic stopped.
+                            </li>
+                            <li>
+                                Full TCP port coverage did not make this a
+                                comprehensive security audit. UDP coverage was
+                                limited, and IPv6 exposure, internal services,
+                                software weaknesses, and credentials require
+                                separate assessment.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section id="conclusions">
+                        <p class="eyebrow">SECURITY CONCLUSIONS</p>
+                        <h2>A bounded conclusion, with uncertainty preserved</h2>
+                        <div class="project-note">
+                            <strong>Assessment conclusion:</strong>
+                            The available evidence did not establish externally
+                            reachable TCP services across the tested port range
+                            from the cloud VPS during the investigation.
+                            Selected UDP results remained inconclusive.
+                            The cause of the missing replies was not isolated.
+                        </div>
+                        <p>
+                            I could report the tested TCP outcome, but could
+                            not conclude that all ports were closed, that every
+                            firewall control was effective, or that the network
+                            was secure in every respect. No specific exposed
+                            UDP service was demonstrated by an
+                            <code>open|filtered</code> label.
+                        </p>
+                        <div class="results-grid">
+                            <article class="result-card">
+                                <h3>Separate observation from hypothesis</h3>
+                                <p>
+                                    An unanswered probe is an observation.
+                                    A particular router dropping that probe
+                                    is a hypothesis until corroborated.
+                                </p>
+                            </article>
+                            <article class="result-card">
+                                <h3>Carry uncertainty into SOC reporting</h3>
+                                <p>
+                                    Report the vantage point, test scope, and
+                                    evidence gaps. Recommend the next check
+                                    without turning an ambiguous result into
+                                    a confirmed incident or an assurance of safety.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section id="next-steps">
+                        <p class="eyebrow">PLANNED FOLLOW-UP</p>
+                        <h2>Make the next assessment easier to verify</h2>
+                        <p>These are proposed improvements, not completed work.</p>
+                        <ol class="case-steps">
+                            <li>
+                                <div>
+                                    <h3>Preserve a reproducible evidence set</h3>
+                                    <p>
+                                        Confirm the target address and external
+                                        route, record UTC timestamps and scanner
+                                        version, and retain scan commands,
+                                        machine-readable results, and captures
+                                        privately. Publish only reviewed,
+                                        sanitized excerpts.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Correlate both sides of the path</h3>
+                                    <p>
+                                        Compare synchronized captures and
+                                        available firewall logs at authorized
+                                        points with the internal service
+                                        inventory. Look for probe arrival and
+                                        reply departure before attributing a
+                                        failure to a device.
+                                    </p>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <h3>Resolve remaining scope gaps</h3>
+                                    <p>
+                                        Use appropriate protocol-specific
+                                        requests for selected UDP services,
+                                        document unresolved ambiguity, assess
+                                        IPv6 separately if applicable, and
+                                        repeat external checks after relevant
+                                        configuration changes.
+                                    </p>
+                                </div>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section id="references">
+                        <p class="eyebrow">TECHNICAL REFERENCES</p>
+                        <h2>How the scan states are interpreted</h2>
+                        <p>
+                            These primary sources explain Nmap's behavior.
+                            They do not independently verify the lab findings.
+                        </p>
+                        <ul class="case-list">
+                            <li><a href="https://nmap.org/book/man-port-scanning-basics.html">Nmap: Port Scanning Basics</a></li>
+                            <li><a href="https://nmap.org/book/synscan.html">Nmap: TCP SYN Scan</a></li>
+                            <li><a href="https://nmap.org/book/scan-methods-udp-scan.html">Nmap: UDP Scan</a></li>
+                        </ul>
+                    </section>
+
+                    <a class="back-link bottom-back-link" href="../../index.html#projects">
+                        <span aria-hidden="true">←</span> Return to featured projects
+                    </a>
+                </article>
+
+                <aside class="case-study-sidebar">
+                    <div class="sidebar-card">
+                        <p class="panel-label">PROJECT SNAPSHOT</p>
+                        <dl class="snapshot-list">
+                            <div><dt>Role</dt><dd>Home-lab investigator</dd></div>
+                            <div><dt>Environment</dt><dd>Cloud VPS and personal home network</dd></div>
+                            <div><dt>Investigation dates</dt><dd>September 28–29, 2026</dd></div>
+                            <div><dt>Publication status</dt><dd>Published November 2, 2026</dd></div>
+                            <div><dt>Evidence level</dt><dd>Investigation summary; raw artifacts not reverified</dd></div>
+                        </dl>
+                    </div>
+                    <div class="sidebar-card">
+                        <p class="panel-label">TECHNOLOGIES AND CONCEPTS</p>
+                        <ul class="tag-list">
+                            <li>Nmap</li><li>Packet Capture</li><li>TCP/IP</li>
+                            <li>UDP</li><li>NAT</li><li>Firewalls</li>
+                        </ul>
+                    </div>
+                    <nav class="sidebar-card" aria-label="Case study sections">
+                        <p class="panel-label">IN THIS CASE STUDY</p>
+                        <ul class="case-list compact-list">
+                            <li><a href="#objective">Objective</a></li>
+                            <li><a href="#environment">Environment and scope</a></li>
+                            <li><a href="#methodology">Methodology</a></li>
+                            <li><a href="#findings">Observations and findings</a></li>
+                            <li><a href="#sanitized-examples">Sanitized examples</a></li>
+                            <li><a href="#limitations">Limitations</a></li>
+                            <li><a href="#conclusions">Security conclusions</a></li>
+                            <li><a href="#next-steps">Planned follow-up</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>&copy; <span id="current-year"></span> Max Allee</p>
+            <p>Sanitized network-perimeter assessment case study.</p>
+        </div>
+    </footer>
+</body>
+</html>
